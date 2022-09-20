@@ -1,7 +1,9 @@
-#include <iostream>
 #include <string>
 #include <fstream>
+#include <unordered_map>
+#include <clocale>
 #include "nlohmann_json/include/nlohmann/json.hpp"
+
 
 struct Movie
 {
@@ -11,31 +13,27 @@ struct Movie
     std::string scriptAuthor;
     std::string director;
     std::string producer;
-
-
-
-
+    std::unordered_map<std::string,std::string>actors;
 };
 
 int main()
 {
+    setlocale(LC_CTYPE, "rus");
     Movie movie;
-   // std::cin >> record.name >> record.family >> record.age >> record.married;
     std::ofstream file("movie.json");
-    //file << "{" << "\"name\": \""<< record.name << "\", \"family\": \"" << record.family <<   "\"}" << std::endl;
-    /*nlohmann::json dict;
-    dict["name"] = record.name;
-    dict["family"] = record.family;
-    dict["age"] = record.age;
-    dict["married"] = record.married;*/
     nlohmann::json dict = {
-            {"country",movie.country = "Italy"},
-            {"productionDate",movie.productionDate = "1976"},
-            {"company",movie.company = "uknown"},
-            {"scriptAuthor",movie.scriptAuthor = "Sergio Korbucci"}
-
+            {"country",movie.country = "СССР"},
+            {"productionDate",movie.productionDate = "1979"},
+            {"company",movie.company = "Одесская киностудия"},
+            {"scriptAuthor",movie.scriptAuthor = "Станислав Говорухин"},
+            {"Actors:", movie.actors = {{"Глеб Жеглов",    "Владимир Высоцкий"},
+                                        {"Володя Шарапов", "Владимир Конкин"},
+                                        {"Груздев",        "Сергей Юрский"},
+                                        {"Пётр Ручников",  "Евгений Евстигнеев"},
+                                        {"Манька Облигация","Лариса Удовиченко"}
+            }
+            }
     };
     file << dict;
-
     return 0;
 }
