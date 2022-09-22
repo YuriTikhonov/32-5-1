@@ -7,6 +7,7 @@
 
 struct Movie
 {
+    std::string movieTitle;
     std::string country;
     std::string productionDate;
     std::string company;
@@ -22,6 +23,7 @@ int main()
     Movie movie;
     std::ofstream file("movie.json");
     nlohmann::json dict = {
+            {"movie title",movie.movieTitle = "Место встречи изменить нельзя"},
             {"country",movie.country = "СССР"},
             {"productionDate",movie.productionDate = "1979"},
             {"company",movie.company = "Одесская киностудия"},
