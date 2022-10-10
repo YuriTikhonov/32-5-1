@@ -2,7 +2,7 @@
 #include <fstream>
 #include <unordered_map>
 #include <clocale>
-#include "nlohmann_json/include/nlohmann/json.hpp"
+#include <nlohmann/json.hpp>
 
 
 struct Movie
@@ -19,7 +19,7 @@ struct Movie
 
 int main()
 {
-    setlocale(LC_CTYPE, "rus");
+    setlocale(LC_CTYPE, "Russian");
     Movie movie;
     std::ofstream file("movie.json");
     nlohmann::json dict = {
@@ -37,5 +37,6 @@ int main()
             }
     };
     file << dict;
+
     return 0;
 }
